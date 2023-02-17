@@ -21,11 +21,19 @@ then
             echo 'Compiled successfully'
             javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" TestListExamples.java
             java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > test-output.txt
-            TEST=`grep "OK" test-output.txt`
-            if [[ $TEST == 'OK (1 test)' ]]
+            OKTEST=`grep "OK" test-output.txt`
+            FAILTEST1=`grep "Failures: 1" test-output.txt`
+            
+            if [[ $OKTEST == 'OK (2 tests)' ]]
             then
-                echo 'ALL GOOD'
+                echo '100%'
+            elif [[ $FAILTEST1 == 'Tests run: 2,  Failures: 1' ]]
+            then
+                echo '50%'
+            else 
+                echo '0%'    
             fi
+            
         fi
         
     else
