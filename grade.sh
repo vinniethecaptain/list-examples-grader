@@ -16,7 +16,7 @@ then
         javac ListExamples.java 2>error-output.txt
         if [[ $? != 0 ]]
         then
-            echo 'Please make sure the file can compile'
+            echo 'Please make sure the file can compile.'
         else 
             echo 'Compiled successfully'
             javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" TestListExamples.java

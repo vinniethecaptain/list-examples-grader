@@ -22,9 +22,17 @@ public class TestListExamples {
   }
 
   @Test(timeout = 500)
-  public void testIsMoon() {
-    List<String> correctList = Arrays.asList("moon", "moon", "moon");
-    List<String> fullList = Arrays.asList("start","early","moon","often","moon","moon");
-    assertEquals(correctList, ListExamples.filter(fullList, new IsMoon()));
+  public void testMoon() {
+    List<String> correctVariedList = Arrays.asList("moon", "moon", "moon");
+    List<String> fullVariedList = Arrays.asList("start", "early", "moon", "often", "moon", "moon");
+    assertEquals(correctVariedList, ListExamples.filter(fullVariedList, new IsMoon()));
+
+    List<String> correctMoonList = Arrays.asList("moon", "moon", "moon");
+    List<String> fullMoonList = Arrays.asList("moon", "moon", "moon");
+    assertEquals(correctMoonList, ListExamples.filter(fullMoonList, new IsMoon()));
+
+    List<String> correctNoMoonList = Arrays.asList();
+    List<String> fullNoMoonList = Arrays.asList("sun", "star", "blackhole");
+    assertEquals(correctNoMoonList, ListExamples.filter(fullNoMoonList, new IsMoon()));
   }
 }
