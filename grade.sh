@@ -19,6 +19,23 @@ then
             echo 'Please make sure the file can compile.'
         else 
             echo 'Compiled successfully'
+
+            METHOD1=`grep "static List<String> filter(List<String> list, StringChecker sc)" ListExamples.java`
+             if [[ $? != 0 ]]
+            then
+                echo 'Please make sure the filter method header is correct'
+                exit
+                
+            fi
+
+            METHOD2=`grep "static List<String> merge(List<String> list1, List<String> list2)" ListExamples.java`
+            if [[ $? != 0 ]]
+            then
+                echo 'Please make sure the merge method header is correct'
+                exit
+                
+            fi     
+
             javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" TestListExamples.java
             java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > test-output.txt
             OKTEST=`grep "OK" test-output.txt`
